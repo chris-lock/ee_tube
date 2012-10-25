@@ -6,6 +6,7 @@ Parameters
 ===============
 url (required)				 - (string)		 - The YouTube url you want information for.
 width (optional)			 - (int)		 - The width of the YouTube embed code.
+autoplay (optional)			 - (boolean)	 - The width of the YouTube embed code.
 
 Tags
 ===============
@@ -29,80 +30,84 @@ Tags
 
 Examples
 ===============
-{exp:ee_tube url="http://www.youtube.com/embed/GokKUqLcvD8" width="600"}
-	
-	{if no_results}
+	{exp:ee_tube
+		url="http://www.youtube.com/embed/GokKUqLcvD8"
+		width="600"
+		autoplay="TRUE"
+	}
+		
+		{if no_results}
 
-		<p class="sorry">Sorry, we couldn't find what you where looking for.</p>
+			<p class="sorry">Sorry, we couldn't find what you where looking for.</p>
 
-	{/if}
+		{/if}
 
-	{if eet_duration_seconds > 10}
+		{if eet_duration_seconds > 10}
 
-		<div id="video-player">
+			<div id="video-player">
 
-			{eet_embed}
-			
-		</div><!-- /#video-player -->
+				{eet_embed}
+				
+			</div><!-- /#video-player -->
 
-		<h1 id="video-title">{eet_title} <small>({eet_duration})</small></h1>
+			<h1 id="video-title">{eet_title} <small>({eet_duration})</small></h1>
 
-		<p class="author">{eet_author}</p>
+			<p class="author">{eet_author}</p>
 
-		<p>{eet_content}</p>
+			<p>{eet_content}</p>
 
-		<a href="http://youtu.be/{eet_id}" target="_blank">{eet_comment_count} Total Comments on YouTube.</a>
+			<a href="http://youtu.be/{eet_id}" target="_blank">{eet_comment_count} Total Comments on YouTube.</a>
 
-		{eet_thumbnails}
+			{eet_thumbnails}
 
-			{if eet_thumbnail_width > 120}
-			
-				<img src="{eet_thumbnail_src}" alt="{eet_title} - {eet_thumbnail_time}" width="{eet_thumbnail_width}" height="{eet_thumbnail_height}" />
+				{if eet_thumbnail_width > 120}
+				
+					<img src="{eet_thumbnail_src}" alt="{eet_title} - {eet_thumbnail_time}" width="{eet_thumbnail_width}" height="{eet_thumbnail_height}" />
 
-			{/if}
+				{/if}
 
-		{/eet_thumbnails}
+			{/eet_thumbnails}
 
-		{eet_categories}
+			{eet_categories}
 
-			{if count == 1}
+				{if count == 1}
 
-				<h3>Categories</h3>
+					<h3>Categories</h3>
 
-				<ul>
+					<ul>
 
-			{/if}
+				{/if}
 
-				<li>{eet_category}</li>
+					<li>{eet_category}</li>
 
-			{if count == total_results}
+				{if count == total_results}
 
-				</ul>
+					</ul>
 
-			{/if}
+				{/if}
 
-		{/eet_categories}
+			{/eet_categories}
 
-		{eet_tags}
+			{eet_tags}
 
-			{if count == 1}
+				{if count == 1}
 
-				<h3>Tags</h3>
+					<h3>Tags</h3>
 
-				<ul>
+					<ul>
 
-			{/if}
+				{/if}
 
-				<li>{eet_tag}</li>
+					<li>{eet_tag}</li>
 
-			{if count == total_results}
+				{if count == total_results}
 
-				</ul>
+					</ul>
 
-			{/if}
+				{/if}
 
-		{/eet_tags}
+			{/eet_tags}
 
-	{/if}
+		{/if}
 
-{/exp:ee_tube}
+	{/exp:ee_tube}

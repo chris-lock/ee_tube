@@ -6,6 +6,7 @@ Parameters
 ===============
 url (required)				 - (string)		 - The YouTube url you want information for.
 width (optional)			 - (int)		 - The width of the YouTube embed code.
+autoplay (optional)			 - (boolean)	 - Should the video autoplay.
 
 Tags
 ===============
@@ -29,7 +30,11 @@ Tags
 
 Examples
 ===============
-	{exp:ee_tube url="http://www.youtube.com/embed/GokKUqLcvD8" width="600"}
+	{exp:ee_tube
+		url="http://www.youtube.com/embed/GokKUqLcvD8"
+		width="600"
+		autoplay="TRUE"
+	}
 		
 		{if no_results}
 

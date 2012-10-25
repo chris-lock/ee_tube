@@ -372,7 +372,11 @@ class Ee_tube {
 		}
 
 		// Set embed paramter
-		$embed_code = self::_build_embed_code($youtube_id, $this->EE->TMPL->fetch_param('width'));
+		$embed_code = self::_build_embed_code(
+			$youtube_id,
+			$this->EE->TMPL->fetch_param('width'),
+			$this->EE->TMPL->fetch_param('autoplay')
+		);
 		$ee_tube_tags['eet_embed'] = self::_build_xhtml_tag($embed_code);
 		
 		// Set swap duration and duration_seconds
@@ -411,18 +415,30 @@ class Ee_tube {
 	/**
 	 * Builds YouTube embed code for the YouTube video id
 	 * @param string $youtube_id YouTube video id
+	 * @param string $embed_width_param Width of video embed
+	 * @param boolean $embed_autoplay_param Should the video autoplay
 	 * @return string $embed_code YouTube embed code
 	 * @author Chris Lock
 	*/
-	private static function _build_embed_code($youtube_id, $embed_width_param) {
+	private static function _build_embed_code($youtube_id, $embed_width_param, $embed_autoplay_param = FALSE) {
 
 		$embed_width_default = 560;
-		$embed_height_default = 315;
 
-		$embed_width = ($embed_width_param) ? $embed_width_param : $embed_width_default;
-		$embed_height = ($embed_width_param) ? ceil($embed_width_param*.5625) : $embed_height_default;
+		$embed_width = ($embed_width_param) 
+			? $embed_width_param 
+			: $embed_width_default;
+		$embed_height = ceil($embed_width*.5625);
+		$embed_autoplay = ($embed_autoplay_param) 
+			? '&amp;autoplay=1' : '';
 
-		$embed_code = '<iframe width="'.$embed_width.'" height="'.$embed_height.'" src="http://www.youtube.com/embed/'.$youtube_id.'?wmode=transparent" frameborder="0" allowfullscreen></iframe>';
+		$embed_code = '
+			<iframe
+				width="'.$embed_width.'" 
+				height="'.$embed_height.'" 
+				src="http://www.youtube.com/embed/'.$youtube_id.'?wmode=transparent'.$embed_autoplay.'" 
+				frameborder="0" 
+				allowfullscreen
+			></iframe>';
 
 		return $embed_code;
 

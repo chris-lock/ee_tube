@@ -428,7 +428,8 @@ class Ee_tube {
 			? $embed_width_param 
 			: $embed_width_default;
 		$embed_height = ceil($embed_width*.5625);
-		$embed_autoplay = ($embed_autoplay_param) 
+		$embed_autoplay_param_boolean = self::_convert_param_to_boolean($embed_autoplay_param);
+		$embed_autoplay = ($embed_autoplay_param_boolean) 
 			? '&amp;autoplay=1' : '';
 
 		$embed_code = '
@@ -441,6 +442,21 @@ class Ee_tube {
 			></iframe>';
 
 		return $embed_code;
+
+	}
+
+	/**
+	 * Converts an EE parameter to a boolean
+	 * @param string $param The parameter to convert
+	 * @return boolean
+	 * @author Chris Lock
+	*/
+	private static function _convert_param_to_boolean($param) {
+
+		$param = strtolower($param);
+
+		return ($param == 'false' OR $param == 'no' OR $param == '0')
+			? FALSE : TRUE;
 
 	}
 

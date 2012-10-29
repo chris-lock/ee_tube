@@ -432,14 +432,7 @@ class Ee_tube {
 		$embed_autoplay = ($embed_autoplay_param_boolean) 
 			? '&amp;autoplay=1' : '';
 
-		$embed_code = '
-			<iframe
-				width="'.$embed_width.'" 
-				height="'.$embed_height.'" 
-				src="http://www.youtube.com/embed/'.$youtube_id.'?wmode=transparent'.$embed_autoplay.'" 
-				frameborder="0" 
-				allowfullscreen
-			></iframe>';
+		$embed_code = '<iframe width="'.$embed_width.'" height="'.$embed_height.'" src="http://www.youtube.com/embed/'.$youtube_id.'?wmode=transparent'.$embed_autoplay.'" frameborder="0" allowfullscreen></iframe>';
 
 		return $embed_code;
 

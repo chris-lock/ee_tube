@@ -420,7 +420,7 @@ class Ee_tube {
 	 * @return string $embed_code YouTube embed code
 	 * @author Chris Lock
 	*/
-	private static function _build_embed_code($youtube_id, $embed_width_param, $embed_autoplay_param = FALSE) {
+	private static function _build_embed_code($youtube_id, $embed_width_param, $embed_autoplay_param = '') {
 
 		$embed_width_default = 560;
 
@@ -455,7 +455,7 @@ class Ee_tube {
 
 		$param = strtolower($param);
 
-		return ($param == 'false' OR $param == 'no' OR $param == '0')
+		return ($param == 'false' OR $param == 'no' OR $param == '0' OR $param == '')
 			? FALSE : TRUE;
 
 	}
